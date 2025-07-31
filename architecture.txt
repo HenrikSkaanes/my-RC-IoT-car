@@ -1,0 +1,49 @@
+[User on Web App]
+      |
+      |   POST /control (e.g. "forward", speed: 2)
+      v
++----------------------+
+|  Azure Static Web App|
++----------------------+
+      |
+      |   Trigger Function via API call
+      v
++------------------+
+| Azure Function   |
+| (API logic layer)|
++------------------+
+      |
+      |   Cloud-to-device message
+      v
++------------------+
+|  Azure IoT Hub   |
+| (Message broker) |
++------------------+
+      |
+      |   Device receives message via MQTT/AMQP/HTTPS
+      v
++-----------------------------+
+| Raspberry Pi (IoT device)  |
+|  ↳ Forwards to Arduino     |
+|  ↳ Arduino drives motors   |
++-----------------------------+
+
+  ▲
+  |   Device sends telemetry (e.g. battery, temp)
+  |
++------------------+
+|  Azure IoT Hub   |
++------------------+
+      |
+      |   Trigger optional Azure Function
+      v
++------------------+
+| Azure Function   |
+| (store/process)  |
++------------------+
+      |
+      |   Save to DB / Log
+      v
++------------------+
+| Cosmos DB (opt)  |
++------------------+
