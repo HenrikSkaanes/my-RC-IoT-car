@@ -1,0 +1,259 @@
+/* Import modern system fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* CSS Reset and Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0a0f0a 0%, #1a1a1a 50%, #0f1419 100%);
+  color: rgba(255, 255, 255, 0.95);
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Military Legacy Design Variables */
+:root {
+  /* Primary Colors - Military Legacy */
+  --military-green: #4a5d23;      /* Classic military olive */
+  --military-amber: #d4af37;      /* Military gold/amber */
+  --military-red: #8b0000;        /* Dark military red */
+  --military-gray: #5a5a5a;       /* Military equipment gray */
+  --military-steel: #708090;      /* Steel blue-gray */
+  --tactical-orange: #ff6600;     /* High-vis tactical orange */
+  
+  /* Legacy button colors */
+  --button-base: rgba(90, 90, 90, 0.8);
+  --button-hover: rgba(74, 93, 35, 0.7);
+  --button-active: rgba(74, 93, 35, 0.9);
+  --button-border: rgba(212, 175, 55, 0.3);
+  --button-border-hover: rgba(212, 175, 55, 0.6);
+  
+  /* Backgrounds with military glass morphism */
+  --bg-primary: linear-gradient(135deg, #0a0f0a 0%, #1a1a1a 50%, #0f1419 100%);
+  --bg-glass: rgba(90, 90, 90, 0.15);
+  --bg-glass-hover: rgba(74, 93, 35, 0.2);
+  --bg-glass-active: rgba(74, 93, 35, 0.3);
+  --bg-dark-glass: rgba(0, 0, 0, 0.6);
+  --bg-tactical: rgba(74, 93, 35, 0.1);
+  
+  /* Borders and effects */
+  --border-glass: rgba(212, 175, 55, 0.2);
+  --border-glass-hover: rgba(212, 175, 55, 0.4);
+  --border-tactical: rgba(74, 93, 35, 0.3);
+  --shadow-glass: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-glass-hover: 0 6px 20px rgba(74, 93, 35, 0.3);
+  --shadow-tactical: 0 0 15px rgba(74, 93, 35, 0.4);
+  --glow-green: 0 0 15px rgba(74, 93, 35, 0.5);
+  --glow-amber: 0 0 15px rgba(212, 175, 55, 0.5);
+  --glow-red: 0 0 15px rgba(139, 0, 0, 0.5);
+  
+  /* Text */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --text-tactical: rgba(212, 175, 55, 0.9);
+  --text-military: rgba(74, 93, 35, 0.9);
+  --text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  
+  /* Backdrop blur */
+  --blur-strong: blur(16px);
+  --blur-medium: blur(10px);
+  --blur-light: blur(6px);
+}
+
+/* Scrollbar styling - Apple style */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--primary-blue);
+  color: white;
+}
+
+/* Focus states - Apple style */
+button:focus, 
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Glass morphism base class */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: var(--blur-medium);
+  -webkit-backdrop-filter: var(--blur-medium);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-glass-hover);
+  box-shadow: var(--shadow-glass-hover);
+}
+
+/* Animations - Smooth and Apple-like */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: var(--glow-blue); }
+  50% { box-shadow: var(--glow-purple); }
+}
+
+@keyframes rainbow {
+  0% { 
+    background: linear-gradient(90deg, 
+      #ff0000 0%, #ff8000 14.28%, #ffff00 28.56%, 
+      #80ff00 42.84%, #00ff00 57.12%, #00ff80 71.4%, 
+      #00ffff 85.68%, #0080ff 100%);
+  }
+  25% { 
+    background: linear-gradient(90deg, 
+      #0080ff 0%, #0000ff 14.28%, #8000ff 28.56%, 
+      #ff00ff 42.84%, #ff0080 57.12%, #ff0000 71.4%, 
+      #ff8000 85.68%, #ffff00 100%);
+  }
+  50% { 
+    background: linear-gradient(90deg, 
+      #ffff00 0%, #80ff00 14.28%, #00ff00 28.56%, 
+      #00ff80 42.84%, #00ffff 57.12%, #0080ff 71.4%, 
+      #0000ff 85.68%, #8000ff 100%);
+  }
+  75% { 
+    background: linear-gradient(90deg, 
+      #8000ff 0%, #ff00ff 14.28%, #ff0080 28.56%, 
+      #ff0000 42.84%, #ff8000 57.12%, #ffff00 71.4%, 
+      #80ff00 85.68%, #00ff00 100%);
+  }
+  100% { 
+    background: linear-gradient(90deg, 
+      #ff0000 0%, #ff8000 14.28%, #ffff00 28.56%, 
+      #80ff00 42.84%, #00ff00 57.12%, #00ff80 71.4%, 
+      #00ffff 85.68%, #0080ff 100%);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Utility classes */
+.text-shadow {
+  text-shadow: var(--text-shadow);
+}
+
+.glow-blue {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+.rainbow-bg {
+  position: relative;
+  animation: rainbow 6s linear infinite;
+  background-size: 400% 100%;
+}
+
+.rainbow-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rainbow-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

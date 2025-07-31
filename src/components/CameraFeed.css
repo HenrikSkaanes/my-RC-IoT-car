@@ -1,0 +1,241 @@
+/* Camera Feed - Hybrid Apple-Military Design */
+.camera-feeds {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 640px;
+  height: 360px;
+}
+
+.camera-feed {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  
+  /* Tactical glass morphism */
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 212, 255, 0.08) 50%,
+    rgba(50, 215, 75, 0.05) 100%);
+  border: 1px solid var(--border-tactical);
+  backdrop-filter: var(--blur-medium);
+  -webkit-backdrop-filter: var(--blur-medium);
+  box-shadow: 
+    var(--shadow-glass),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: scaleIn 0.6s ease-out;
+}
+
+.camera-feed:hover {
+  border-color: var(--primary-cyan);
+  box-shadow: 
+    var(--shadow-glass-hover),
+    var(--glow-cyan),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.camera-feed.large {
+  height: 100%;
+  min-height: 400px;
+  flex: 1; /* Share space equally with other cameras */
+}
+
+.camera-feed.small {
+  height: 100%;
+  width: 100%;
+  flex: 1; /* Share space equally with other cameras */
+}
+
+.camera-feed.mini-camera {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  min-height: 280px;
+}
+
+.camera-feed.active {
+  border-color: var(--primary-cyan);
+  box-shadow: 
+    var(--shadow-glass-hover),
+    var(--glow-cyan),
+    inset 0 1px 0 rgba(0, 212, 255, 0.2);
+}
+
+.camera-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 10;
+  
+  background: linear-gradient(180deg, 
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    transparent 100%);
+  backdrop-filter: var(--blur-light);
+  -webkit-backdrop-filter: var(--blur-light);
+}
+
+.camera-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-shadow: var(--text-shadow);
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.status-dot.connected {
+  background: var(--accent-green);
+  box-shadow: 0 0 8px rgba(52, 199, 89, 0.6);
+}
+
+.status-dot.disconnected {
+  background: var(--accent-red);
+  box-shadow: 0 0 8px rgba(255, 59, 48, 0.6);
+}
+
+.status-text {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--text-secondary);
+}
+
+.video-container {
+  position: relative;
+  height: calc(100% - 80px);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.no-video-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.rainbow-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.4;
+  border-radius: 0;
+}
+
+.no-video-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: var(--bg-glass);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-glass);
+}
+
+.camera-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: var(--bg-dark-glass);
+  backdrop-filter: var(--blur-light);
+  -webkit-backdrop-filter: var(--blur-light);
+  border-top: 1px solid var(--border-glass);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.resolution-info,
+.fps-counter {
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .camera-feed {
+    border-radius: 12px;
+  }
+  
+  .camera-title {
+    font-size: 13px;
+  }
+  
+  .no-video-text {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+  
+  .camera-header,
+  .camera-footer {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .camera-feed {
+    border-radius: 10px;
+  }
+  
+  .camera-title {
+    font-size: 12px;
+  }
+  
+  .no-video-text {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+  
+  .camera-header,
+  .camera-footer {
+    padding: 6px 10px;
+  }
+}

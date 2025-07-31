@@ -1,0 +1,377 @@
+/* Main App Layout - Expert Hybrid Apple-Military Design */
+.app {
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  position: relative;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Expert Layout Grid */
+.app-main {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "cameras cameras controls"
+    "map future controls";
+  grid-template-columns: 1fr 1fr 340px;
+  grid-template-rows: 60px 1fr 280px;
+  gap: 20px;
+  padding: 20px;
+  padding-top: 0;
+}
+
+/* Header Section */
+.app-header {
+  grid-area: header;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+  
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 212, 255, 0.05) 50%,
+    rgba(50, 215, 75, 0.03) 100%);
+  border-bottom: 1px solid var(--border-tactical);
+  backdrop-filter: var(--blur-strong);
+  -webkit-backdrop-filter: var(--blur-strong);
+  box-shadow: var(--shadow-glass);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: var(--text-shadow);
+  background: linear-gradient(135deg, var(--primary-cyan), var(--primary-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.status-bar {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.status-dot.connected {
+  background: var(--primary-green);
+  box-shadow: var(--glow-green);
+}
+
+.status-dot.disconnected {
+  background: var(--accent-red);
+  box-shadow: 0 0 10px rgba(255, 69, 58, 0.4);
+}
+
+/* Camera section styles */
+.camera-section {
+  grid-area: cameras;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  min-height: 400px; /* Ensure cameras are taller */
+}
+
+.camera-section.with-expanded-map {
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 400px; /* Maintain full height when map is expanded */
+}
+
+.expanded-map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  min-height: 400px; /* Match camera section height */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map-section {
+  transition: all 0.3s ease;
+  min-height: 280px; /* Give map more height in normal state */
+}
+
+.map-section.with-cameras {
+  display: flex;
+  gap: 20px;
+  min-height: 280px; /* Maintain map section height for mini cameras */
+}
+
+.minimized-cameras {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.mini-camera {
+  flex: 1;
+  min-height: 280px; /* Ensure individual camera height */
+}
+
+.minimized-map-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  backdrop-filter: var(--blur-medium);
+  -webkit-backdrop-filter: var(--blur-medium);
+  padding: 20px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.minimized-map-placeholder h3 {
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.minimized-map-placeholder p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Controls Section */
+.controls-section {
+  grid-area: controls;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+}
+
+/* Map Section */
+.map-section {
+  grid-area: map;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 280px; /* Give map more height in normal state */
+}
+
+.map-section.with-cameras {
+  display: flex;
+  gap: 20px;
+  min-height: 280px; /* Maintain map section height for mini cameras */
+}
+
+/* Future section for additional UI elements */
+.future-section {
+  grid-area: future;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Performance optimizations */
+.app * {
+  will-change: transform;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .app-main {
+    grid-template-columns: 1fr 1fr 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .app-main {
+    grid-template-areas: 
+      "header header"
+      "cameras controls"
+      "map controls";
+    grid-template-columns: 1fr 280px;
+    grid-template-rows: 60px 1fr 200px;
+  }
+  
+  .camera-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  /* Hide future section on smaller screens */
+  .future-section {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-main {
+    grid-template-areas: 
+      "header"
+      "cameras"
+      "controls"
+      "map";
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 300px auto 180px;
+    gap: 16px;
+  }
+  
+  .camera-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  
+  .controls-section {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-tactical);
+    border-radius: 16px;
+    padding: 16px;
+    backdrop-filter: var(--blur-medium);
+    -webkit-backdrop-filter: var(--blur-medium);
+    box-shadow: var(--shadow-glass);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    padding: 12px;
+    padding-top: 0;
+    gap: 12px;
+    grid-template-rows: 50px 200px auto 150px;
+  }
+  
+  .app-header {
+    height: 50px;
+    padding: 0 16px;
+  }
+  
+  .app-title {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .status-bar {
+    gap: 16px;
+  }
+  
+  .status-item {
+    font-size: 10px;
+  }
+  
+  .camera-section {
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-main {
+    grid-template-rows: 45px 160px auto 120px;
+    gap: 10px;
+    padding: 10px;
+    padding-top: 0;
+  }
+  
+  .app-header {
+    height: 45px;
+    padding: 0 12px;
+  }
+  
+  .app-title {
+    font-size: 14px;
+  }
+  
+  .status-bar {
+    gap: 12px;
+  }
+  
+  .status-item {
+    font-size: 9px;
+  }
+}
+
+/* High-resolution displays */
+@media (min-width: 1920px) {
+  .app-main {
+    grid-template-columns: 1fr 1fr 400px;
+    grid-template-rows: 70px 1fr 250px;
+    gap: 24px;
+    padding: 24px;
+    padding-top: 0;
+  }
+  
+  .app-header {
+    height: 70px;
+    padding: 0 32px;
+  }
+  
+  .app-title {
+    font-size: 24px;
+  }
+  
+  .status-item {
+    font-size: 12px;
+  }
+}
+
+/* Animation keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
