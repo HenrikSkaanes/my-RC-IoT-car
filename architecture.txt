@@ -1,4 +1,28 @@
-[User on Web App]
+rc-car-azure-project/
+│
+├── frontend/                 ← Your Vite + React UI
+│   ├── src/
+│   ├── public/
+│   └── vite.config.js
+│
+├── api/                      ← Azure Functions (each folder = a function)
+│   ├── control/index.js      ← POST /api/control
+│   ├── telemetry/index.js    ← GET /api/telemetry
+│   ├── status/index.js       ← GET /api/status
+│   └── shared/               ← Helper utils, shared logic
+│
+├── .github/                  ← GitHub Actions workflows
+│   └── workflows/
+│       └── deploy.yml        ← Auto-deploy to Azure
+│
+├── staticwebapp.config.json ← Routing for Static Web App
+├── package.json              ← Shared deps for Functions (optional)
+├── README.md
+└── infra/                    ← Optional: Bicep/Terraform files
+
+
+
+@[User on Web App]
       |
       |   POST /control (e.g. "forward", speed: 2)
       v
@@ -47,3 +71,5 @@
 +------------------+
 | Cosmos DB (opt)  |
 +------------------+
+
+
